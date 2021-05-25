@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-image: url("https://previews.123rf.com/images/klyots/klyots1706/klyots170600034/79729133-brow-correction-permanent-makeup-brushes-tattoo-machine-composition-on-wooden-background.jpg"); overflow: hidden;}
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-image: url("https://i.pinimg.com/originals/17/c3/c3/17c3c3d23ebaef23ea941a23973c42bf.jpg");
+    overflow: hidden;
+}

@@ -15,6 +15,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {DemoMaterialModule} from './testMaterial/material-module'
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatSelectModule,
     MatDatepickerModule,
     DemoMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent]

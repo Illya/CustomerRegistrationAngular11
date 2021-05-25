@@ -1,7 +1,9 @@
-img{
-    width: 400px;
-    height: 400px;
-    margin-left:400px;
-    margin-right:auto;  
-    vertical-align:middle;
+img {
+    width: 900px;
+    height: 500px;
+    margin-left: 500px;
+    margin-right: auto;
+    vertical-align: middle;
 }
+
+.form-container {}

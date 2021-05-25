@@ -17,6 +17,10 @@ export class CustomerFormComponent implements OnInit {
   maxDate = new Date(this.minDate.getFullYear(),this.minDate.getMonth() + 6, this.minDate.getDay());
 
   dateFilter = (date: any) => {
+    if(date == undefined)
+    {
+      return false;
+    }
     const day = date.getDay();
     return day !== 0
   }
