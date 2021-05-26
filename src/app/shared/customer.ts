@@ -7,7 +7,7 @@ export class Customer {
     instagramName:string='';
     phoneNumber:string='';
     procedureId:number=0;
-    procedure:BeautiProcedure=new BeautiProcedure;
+    //procedure:BeautiProcedure=new BeautiProcedure;
     registrationDate:Date=new Date;
     registrationTime:Time={hours:0, minutes:0};
 }

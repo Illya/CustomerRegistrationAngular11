@@ -7,9 +7,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CustomerService {
 
-  constructor(private httpClient: HttpClient ) {}
+  constructor(private http: HttpClient ) {}
 
   readonly baseURL = 'http://localhost:61351/api/customer'
 
   formData:Customer = new Customer();
+
+  postRegisterInfo(){
+    return this.http.post(this.baseURL, this.formData);
+  }
 }
