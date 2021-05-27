@@ -14,13 +14,7 @@ export class BeautiProcedureService {
 
   procedures:BeautiProcedure[];
 
-  
-
   getProcedures(){
-    const headers = new Headers();
-        headers.append('Access-Control-Allow-Headers', 'Content-Type');
-        headers.append('Access-Control-Allow-Methods', 'GET');
-        headers.append('Access-Control-Allow-Origin', '*');
     this.http.get(this.baseURL)
     .toPromise()
     .then(res => this.procedures = res as BeautiProcedure[]);

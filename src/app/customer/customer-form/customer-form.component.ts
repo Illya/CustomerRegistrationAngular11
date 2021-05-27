@@ -1,5 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { BeautiProcedure } from 'src/app/shared/beauti-procedure';
 import { BeautiProcedureService } from 'src/app/shared/beauti-procedure.service';
 import { CustomerService } from 'src/app/shared/customer.service';
@@ -15,6 +16,15 @@ export class CustomerFormComponent implements OnInit {
 
   ngOnInit() {
     this.procedureService.getProcedures();
+  }
+
+  events: string[] = [];
+
+  addEvent(event: MatDatepickerInputEvent<Date>) {
+    if(this.customerService.formData.procedure.duration)
+    {
+        this.customerService.getFreeHours(event.value?.toDateString()!, this.customerService.formData.procedure.duration);
+    } 
   }
 
   myForm = new FormControl('');
