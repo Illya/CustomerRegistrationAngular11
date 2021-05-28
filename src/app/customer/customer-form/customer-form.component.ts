@@ -20,10 +20,16 @@ export class CustomerFormComponent implements OnInit {
 
   events: string[] = [];
 
-  addEvent(event: MatDatepickerInputEvent<Date>) {
+  addDateEvent(event: MatDatepickerInputEvent<Date>) {
     if(this.customerService.formData.procedure.duration)
     {
         this.customerService.getFreeHours(event.value?.toDateString()!, this.customerService.formData.procedure.duration);
+    } 
+  }
+
+  addProcedureEvent(procedure: BeautiProcedure){
+    if(this.customerService.formData.registrationDate) {
+      this.customerService.getFreeHours(this.customerService.formData.registrationDate.toDateString()!, procedure.duration);
     } 
   }
 

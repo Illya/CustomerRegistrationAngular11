@@ -39,7 +39,7 @@
             <div>
                 <mat-form-field class="procedure-form-field" appearance="fill" [style.width.px]=327>
                     <mat-label>Procedure</mat-label>
-                    <mat-select  [(ngModel)]="customerService.formData.procedure" name="proc">
+                    <mat-select  [(ngModel)]="customerService.formData.procedure" name="proc"  (selectionChange)="addProcedureEvent($event.value)">
                         <mat-option *ngFor="let proc of procedureService.procedures" [value]="proc">{{proc.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -49,14 +49,14 @@
                 <mat-form-field class="date-form-field" appearance="fill" [style.width.px]=163>
                     <mat-label>Choose a date</mat-label>
                     <input matInput [matDatepicker]="myDatePicker" [min]="minDate" [max]="maxDate" [matDatepickerFilter]="dateFilter" name="date"
-                    (dateInput)="addEvent($event)" >
+                    (dateInput)="addDateEvent($event)" [(ngModel)]="customerService.formData.registrationDate">
                     <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #myDatePicker></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field class="time-form-field" appearance="fill" [style.width.px]=130>
                     <mat-label>Choose time</mat-label>
                     <mat-select  [(ngModel)]="customerService.formData.registrationTime" name="hour"> 
-                        <mat-option *ngFor="let hour of customerService.freeHours" [value]="hour.hour">{{hour.hour}}:{{hour.minute}}</mat-option>
+                        <mat-option *ngFor="let hour of customerService.freeHours" [value]="hour">{{hour.hour}}:{{hour.minute}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>

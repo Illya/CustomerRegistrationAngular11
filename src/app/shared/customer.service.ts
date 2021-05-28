@@ -29,7 +29,17 @@ export class CustomerService {
 
     this.http.get(this.baseURL + '/dates' , {params: params})
     .toPromise()
-    .then(res => this.freeHours = res as Times[]);
+    .then(res => {
+      this.freeHours = res as Times[];
+      this.freeHours.forEach(time => 
+        {
+          if(time.minute == "0")
+          {
+              time.minute += "0";
+          }
+        }
+      );
+    });
   }
 
   postRegisterInfo(){
