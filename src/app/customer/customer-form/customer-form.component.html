@@ -1,13 +1,11 @@
-<form #form="ngForm">
-    
+<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
     <mat-card class="register-card" layout-align='center stretch'>
         <mat-card-header>
             <mat-card-title class="card-title">Registration</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <input matImput type="hidden" name="customerId" [value]="customerService.formData.customerId">
             <div>
-                <mat-form-field  class="name-form-field" hideRequiredMarker [style.width.px]=327>
+                <mat-form-field  class="name-form-field"  [style.width.px]=327> <!--hideRequiredMarker-->
                     <mat-label>First name</mat-label>
                     <input matInput name="fullName" #fullName="ngModel" [(ngModel)]="customerService.formData.fullName" required>
                     <mat-icon matSuffix>account_box</mat-icon>
@@ -32,18 +30,18 @@
                 <mat-form-field class="mobile-form-field" [style.width.px]=327>
                     <mat-label>Mobile</mat-label>
                     <span matPrefix>+38&nbsp;</span>
-                    <input type="tel" matInput placeholder="0(99)-999-99-99" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="customerService.formData.phoneNumber">
+                    <input type="tel" matInput placeholder="0(99)-999-99-99" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="customerService.formData.phoneNumber"
+                    required>
                     <mat-icon matSuffix>phone</mat-icon>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field class="procedure-form-field" appearance="fill" [style.width.px]=327>
                     <mat-label>Procedure</mat-label>
-                    <mat-select  [(ngModel)]="customerService.formData.procedure" name="proc"  (selectionChange)="addProcedureEvent($event.value)">
+                    <mat-select name="proc"  [(ngModel)]="customerService.formData.procedure" (selectionChange)="addProcedureEvent($event.value)"> 
                         <mat-option *ngFor="let proc of procedureService.procedures" [value]="proc">{{proc.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <!--<p>ProcedureId : {{customerService.formData.procedureId}}</p>-->
             </div>
             <div class="date-time-container">
                 <mat-form-field class="date-form-field" appearance="fill" [style.width.px]=163>
@@ -55,8 +53,8 @@
                 </mat-form-field>
                 <mat-form-field class="time-form-field" appearance="fill" [style.width.px]=130>
                     <mat-label>Choose time</mat-label>
-                    <mat-select  [(ngModel)]="customerService.formData.registrationTime" name="hour"> 
-                        <mat-option *ngFor="let hour of customerService.freeHours" [value]="hour">{{hour.hour}}:{{hour.minute}}</mat-option>
+                    <mat-select name="hour" (selectionChange)="addTimeEvent($event.value)"> 
+                        <mat-option *ngFor="let hour of customerService.freeHours" [value]="hour">{{hour.hours}}:{{hour.minutes}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>

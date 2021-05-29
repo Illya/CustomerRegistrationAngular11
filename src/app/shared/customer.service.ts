@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Customer } from './customer';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Time } from '@angular/common';
+import { DatePipe, Time } from '@angular/common';
 
-interface Times {
-  hour: string;
-  minute: string;
+interface MyTime {
+  hours: string;
+  minutes: string;
 }
 
 @Injectable({
@@ -20,7 +20,7 @@ export class CustomerService {
 
   formData:Customer = new Customer();
 
-  freeHours: Times[];
+  freeHours: MyTime[];
 
   getFreeHours(date:string, duration:number){
     let params = new HttpParams()
@@ -30,19 +30,19 @@ export class CustomerService {
     this.http.get(this.baseURL + '/dates' , {params: params})
     .toPromise()
     .then(res => {
-      this.freeHours = res as Times[];
-      this.freeHours.forEach(time => 
-        {
-          if(time.minute == "0")
-          {
-              time.minute += "0";
-          }
-        }
+      this.freeHours = res as MyTime[];
+       this.freeHours.forEach(time => 
+         {
+           if(time.minutes == "0")
+           {
+               time.minutes += "0";
+           }
+         }
       );
     });
   }
 
   postRegisterInfo(){
-    return this.http.post(this.baseURL, this.formData);
+    return this.http.post(this.baseURL, this.formData, {responseType: 'text'});
   }
 }

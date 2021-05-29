@@ -1,8 +1,10 @@
+import { DatePipe, Time } from '@angular/common';
 import { Component, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { BeautiProcedure } from 'src/app/shared/beauti-procedure';
 import { BeautiProcedureService } from 'src/app/shared/beauti-procedure.service';
+import { Customer } from 'src/app/shared/customer';
 import { CustomerService } from 'src/app/shared/customer.service';
 
 @Component({
@@ -29,11 +31,17 @@ export class CustomerFormComponent implements OnInit {
 
   addProcedureEvent(procedure: BeautiProcedure){
     if(this.customerService.formData.registrationDate) {
-      this.customerService.getFreeHours(this.customerService.formData.registrationDate.toDateString()!, procedure.duration);
+      this.customerService.getFreeHours(new Date(this.customerService.formData.registrationDate).toDateString(), procedure.duration);
     } 
   }
 
-  myForm = new FormControl('');
+  addTimeEvent(time:Time) {
+    const dateTime = new Date(this.customerService.formData.registrationDate);
+    dateTime.setHours(time.hours, time.minutes);
+    const timeDifference = new DatePipe('en-US');
+    this.customerService.formData.registrationDate = timeDifference.transform(dateTime, 'yyyy-MM-ddTHH:mm:ss.sss');
+    
+  }
 
   selectedValue: BeautiProcedure;
 
@@ -50,13 +58,21 @@ export class CustomerFormComponent implements OnInit {
   }
 
   onSubmit(form:NgForm){
+    console.log(this.customerService.formData)
     this.customerService.postRegisterInfo().subscribe(
       res => {
-
+          console.log(res);
+          this.resetForm(form);
       },
       err => {
+        this.resetForm(form);
         console.log(err);
       }
     );
+  }
+
+  resetForm(form:NgForm){
+    form.form.reset();
+    this.customerService.formData = new Customer();
   }
 }
