@@ -2,6 +2,7 @@ import { DatePipe, Time } from '@angular/common';
 import { Component, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BeautiProcedure } from 'src/app/shared/beauti-procedure';
 import { BeautiProcedureService } from 'src/app/shared/beauti-procedure.service';
 import { Customer } from 'src/app/shared/customer';
@@ -10,11 +11,15 @@ import { CustomerService } from 'src/app/shared/customer.service';
 @Component({
   selector: 'app-customer-form',
   templateUrl: './customer-form.component.html',
-  styleUrls: [ 'customer-form.component.css']
+  styleUrls: [ 'customer-form.component.scss']
 })
 export class CustomerFormComponent implements OnInit {
 
-  constructor(public customerService:CustomerService, public procedureService:BeautiProcedureService) { }
+  constructor(
+    public customerService:CustomerService, 
+    public procedureService:BeautiProcedureService,
+    private _snackBar: MatSnackBar
+    ) { }
 
   ngOnInit() {
     this.procedureService.getProcedures();
@@ -61,6 +66,7 @@ export class CustomerFormComponent implements OnInit {
     console.log(this.customerService.formData)
     this.customerService.postRegisterInfo().subscribe(
       res => {
+          alert("Запис пройшов успішно!")
           console.log(res);
           this.resetForm(form);
       },

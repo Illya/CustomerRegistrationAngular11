@@ -1,0 +1,60 @@
+mat-form-field{
+    width: 60%;
+    font-size: 20px;
+}
+
+/*mat-grid-tile {
+    background: lightblue;
+}*/
+
+.toggle{
+    margin-bottom: 1%;
+    font-size: 15px;
+}
+
+.example-container {
+    height: 400px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+  }
+
+.regis{
+    width: 90%;
+}
+
+.title{
+    font-size: 30px;
+}
+
+mat-panel-title{
+    font-size: 20px;
+}
+
+mat-icon{
+    margin-right: 2%;
+}
+
+::ng-deep .regist-grid-tile .mat-figure {
+    align-items: flex-start !important;
+    width: 100%;
+}
+
+::ng-deep.buttons .mat-figure {
+    justify-content: flex-end !important ;
+    align-items: flex-start !important;
+    width: 91%;
+}
+
+.sub {
+    margin-right: 1%;
+    font-size: 15px;
+}
+
+.divider{
+    margin-top: 1%;
+    width: 90%;
+    background-color: black;
+}

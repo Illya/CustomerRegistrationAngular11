@@ -1,0 +1,92 @@
+<mat-grid-list cols="10" rowHeight="50px">
+    <mat-grid-tile class="title" colspan="10" rowspan="2">Персональний кабінет</mat-grid-tile>
+    <form class="personal-form" #personalForm="ngForm">
+        <mat-grid-tile colspan="5" rowspan="2"> 
+            <mat-form-field  class="name-form-field">
+                <mat-label>Ім'я</mat-label>
+                <input matInput name="fullName" #fullName="ngModel" [(ngModel)]="formData.fullName">
+                <mat-icon matSuffix>account_box</mat-icon>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="5" rowspan="2">
+            <mat-form-field class="instagram-form-field">
+                <mat-label>Інстаграм</mat-label>
+                <span matPrefix>@&nbsp;</span>
+                <input matInput name="instagramName" #instagramName="ngModel" [(ngModel)]="formData.instagramName">
+                <mat-icon matSuffix>photo_camera</mat-icon>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="5" rowspan="2"> 
+            <mat-form-field class="mobile-form-field">
+                <mat-label>Ваш мобільний телефон</mat-label>
+                <span matPrefix>+38&nbsp;</span>
+                <input type="tel" matInput placeholder="0(99)-999-99-99" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="formData.phoneNumber" 
+                maxlength="10" required>
+                <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="5" rowspan="2">
+            <mat-form-field class="telegram-form-field">
+                <mat-label>Ваш Telegram</mat-label>
+                <input type="tel" matInput placeholder="Ідентифікатор чату Telegram" name="telegramChatId" #telegramChatId="ngModel" [(ngModel)]="formData.telegramChatId"
+                maxlength="15" required>
+                <mat-icon matSuffix>send</mat-icon>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile class="buttons" colspan="10" rowspan="1">
+                <button class="sub" mat-raised-button type="submit">Зберегти</button>
+                <button class="sub" mat-raised-button type="submit">Скасувати</button>
+        </mat-grid-tile> 
+    </form>
+    <mat-grid-tile class="regist-grid-tile" colspan="10" rowspan="1">
+        <mat-divider class="divider"></mat-divider>
+    </mat-grid-tile>
+    <mat-grid-tile class="regist-grid-tile" colspan="10" rowspan="10"> 
+        <mat-expansion-panel class="regis">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Ваші записи
+              </mat-panel-title>
+              <mat-panel-description>
+                Натисніть, щоб подивитися Ваші минулі та актуальні записи 
+              </mat-panel-description>
+              <mat-icon align="end">list</mat-icon>
+            </mat-expansion-panel-header>
+            <section class="example-section">
+                <mat-slide-toggle class="toggle">Активні записи</mat-slide-toggle>
+              </section>
+            <div class="example-container mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource">
+              
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                  </ng-container>
+              
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                  </ng-container>
+              
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="weight">
+                    <th mat-header-cell *matHeaderCellDef> Weight </th>
+                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                  </ng-container>
+              
+                  <!-- Symbol Column -->
+                  <ng-container matColumnDef="symbol">
+                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                  </ng-container>
+              
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
+          </mat-expansion-panel>
+    </mat-grid-tile>
+</mat-grid-list>
+

@@ -1,0 +1,21 @@
+mat-grid-list{
+    background-color:rgb(84, 87, 59);
+}
+
+.title {
+    color: white;
+}
+.title::after {
+    content: "";
+  clear: both;
+  display: table;
+  color: aliceblue;
+}
+mat-grid-tile {
+    text-align: center;
+    font-size: 36px;
+  }
+  app-customer-form {
+      width: 98%;
+      height: 98%;
+  }  

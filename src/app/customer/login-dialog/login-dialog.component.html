@@ -1,0 +1,20 @@
+    <mat-dialog-content>
+        <mat-card id="card" style="text-align: center;">
+            <mat-card-title>
+                Вхід
+            </mat-card-title>
+            <mat-card-content>
+                <mat-form-field>
+                    <input matInput placeholder="логін">
+                </mat-form-field><br/>
+                <mat-form-field>
+                    <input matInput placeholder="пароль" type="password">
+                </mat-form-field><br/>
+            </mat-card-content>
+        </mat-card>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button class="login-button" style="margin-right: 10px;"  
+        (click)="btnClick()" routerLink = "/personal-page" mat-dialog-close>Увійти</button>
+        <button mat-raised-button class="close-button" (click)="goBack()" mat-dialog-close >Закрити</button>
+    </mat-dialog-actions>

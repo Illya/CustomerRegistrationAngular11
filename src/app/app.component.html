@@ -1,15 +1,6 @@
-<mat-tab-group mat-align-tabs="end" color="primary" backgroundColor="primary">
-    <mat-tab label="ГОЛОВНА">
-    </mat-tab>
-    <mat-tab label="ГАЛЕРЕЯ">
-        <img mat-card-image src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg">
-    </mat-tab>
-    <mat-tab label="АКЦІЇ">
-
-    </mat-tab>
-    <mat-tab label="ЗАПИСАТИСЯ">
-        <div class="form-container" fxLayout="column" fxLayoutAlign="center center">
-            <app-customer-form></app-customer-form>
-        </div>
-    </mat-tab>
-</mat-tab-group>
+<div class="custom">
+    <app-customer></app-customer>
+</div>
+<div class="router-wrapper">
+    <router-outlet></router-outlet>
+</div>

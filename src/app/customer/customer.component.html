@@ -1,0 +1,35 @@
+<mat-drawer-container>
+    <mat-drawer-content>
+      <mat-toolbar class="nav">
+        <mat-list role="list">
+          <mat-list-item role="listitem"><a mat-button (click)="scroll(features)" routerLink = "/services">Послуги</a></mat-list-item> 
+          <mat-list-item role="listitem"><a mat-button (click)="scroll(promotions)" routerLink = "/promotions">Акції</a></mat-list-item>
+          <mat-list-item role="listitem"><a mat-button (click)="scroll(signUp)" routerLink = "/sign-up">Записатися</a></mat-list-item>
+          <mat-list-item role="listitem">UA
+            <mat-select style="color:white">
+              <mat-option >UA</mat-option>
+              <mat-option>RUS</mat-option>
+          </mat-select>
+          </mat-list-item>
+          <mat-list-item role="listitem"><a mat-button routerLink="/login" (click)="openDialog()">{{signIn}}</a></mat-list-item>
+        </mat-list>
+      </mat-toolbar>
+      <div class="silder">
+        <div class="silder-content">
+          <h1>
+            Салон краси {{companyName}}
+          </h1>
+        </div>
+      </div>
+     <div class="services" #features><app-services></app-services></div> 
+    
+    <div class="prom" #promotions><app-promotions></app-promotions></div>
+
+    <div class="sign-up" #signUp><app-sign-up></app-sign-up></div>
+    <div class="footer">
+        <mat-toolbar >
+          <span>2021</span>
+        </mat-toolbar>
+      </div>
+    </mat-drawer-content>
+</mat-drawer-container>

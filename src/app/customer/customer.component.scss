@@ -1,0 +1,184 @@
+$primary :#1a1a1a;
+
+*{
+    font-family: 'Nunito Sans';
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+    background: #F0F3F5;
+  }
+  
+  h1 {
+    margin: 0;
+    text-align: center;
+    padding: 10px;
+    font-weight: 600;
+  }
+  
+  .mat-list-base {
+    display: flex !important;
+    padding-top: 0px !important;
+    position: absolute;
+    right: 0;
+  
+  }
+  
+  .desktop-hide {
+    display: none !important;
+  }
+  
+  .mat-drawer:not(.mat-drawer-side) {
+    position: fixed;
+  }
+  
+  .mat-drawer-backdrop {
+    position: fixed !important;
+  }
+  
+  .mat-drawer {
+    width: 100%;
+    background-color: $primary;
+  
+    .close {
+      font-size: 28px;
+      color: #fff;
+      float: right;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      cursor: pointer;
+    }
+  
+    h1 {
+      color: #fff;
+    }
+  
+    .mat-list-base {
+      display: block !important;
+      margin: 0 auto;
+      position: relative;
+  
+      a {
+        text-align: center;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .mat-button {
+    font-size: 24px;
+    line-height: 58px !important;
+  }
+  
+  .mat-toolbar {
+    background-color: transparent;
+  }
+  .mat-toolbar :hover{
+    color: whitesmoke;
+  }
+  
+  .nav {
+    position: absolute;
+    width: 100%;
+    z-index: 9;
+  }
+
+  .mat-list-base .mat-list-item{
+    color: #fff !important;
+  }
+
+  .mat-icon {
+    color: $primary;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 32px;
+  }
+  
+  img {
+    width: 100%;
+    height: 50%;
+  }
+  
+  .mat-icon {
+  
+    height: auto !important;
+    width: auto !important;
+  }
+  
+  .silder {
+    background-image: url(D:\Coding\ASP.NET_Core\CustomerApp\src\assets\IMG_7863.JPG);
+    height: 720px;;
+    background-size: cover;
+    background-position: center;
+    opacity: .9;
+  
+    .silder-content {
+      display: flex;
+      justify-self: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+   
+    .mat-icon {
+      font-size: 40px;
+      color: #fff;
+      float: right;
+      cursor: pointer;
+  
+    }
+  
+    h1 {
+      color: #fff;
+      margin: auto;
+      font-size: 50px;
+  
+    }
+  }
+  
+  .center-content {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media(max-width:842px) {
+    h3 {
+      font-size: 22px !important;
+    }
+  
+    p {
+  
+      font-size: 16px !important;
+    }
+  }
+
+  @media(max-width:768px) {
+    .nav {
+      display: none !important;
+    }
+  
+    .desktop-hide {
+      display: block !important;
+    }
+  
+    .silder h1 {
+      font-size: 36px;
+    }
+  }
+
+  .footer {
+    span {
+      margin: auto;
+    }
+    background-color: #e8f3fa;
+  }

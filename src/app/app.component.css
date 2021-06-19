@@ -6,4 +6,11 @@ img {
     vertical-align: middle;
 }
 
-.form-container {}
+
+.custom {
+    z-index: 5;
+  }
+  
+  .router-wrapper {
+    z-index: 3;
+  }

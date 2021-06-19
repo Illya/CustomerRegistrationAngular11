@@ -1,0 +1,16 @@
+::ng-deep.mat-dialog-container{
+  background-color: rgb(222, 228, 235);
+}
+mat-card{
+  height: 250px;
+  background-color: transparent;
+  
+  mat-form-field {
+    font-size: 20px;
+    width: 100%;
+  }
+}
+
+::ng-deep.mat-form-field-ripple {
+  background-color: rgb(0, 0, 0) !important;;
+ }
