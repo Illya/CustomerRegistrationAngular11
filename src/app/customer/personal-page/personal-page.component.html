@@ -4,7 +4,7 @@
         <mat-grid-tile colspan="5" rowspan="2"> 
             <mat-form-field  class="name-form-field">
                 <mat-label>Ім'я</mat-label>
-                <input matInput name="fullName" #fullName="ngModel" [(ngModel)]="formData.fullName">
+                <input matInput name="fullName" #fullName="ngModel" [(ngModel)]="formData.fullName" required>
                 <mat-icon matSuffix>account_box</mat-icon>
             </mat-form-field>
         </mat-grid-tile>
@@ -12,7 +12,7 @@
             <mat-form-field class="instagram-form-field">
                 <mat-label>Інстаграм</mat-label>
                 <span matPrefix>@&nbsp;</span>
-                <input matInput name="instagramName" #instagramName="ngModel" [(ngModel)]="formData.instagramName">
+                <input matInput name="instagramName" #instagramName="ngModel" [(ngModel)]="formData.instagramName" required>
                 <mat-icon matSuffix>photo_camera</mat-icon>
             </mat-form-field>
         </mat-grid-tile>
@@ -53,7 +53,8 @@
               <mat-icon align="end">list</mat-icon>
             </mat-expansion-panel-header>
             <section class="example-section">
-                <mat-slide-toggle class="toggle">Активні записи</mat-slide-toggle>
+                <mat-slide-toggle class="toggle" color="primary" (change)="changed()"
+                [(ngModel)]="checked">Активні записи</mat-slide-toggle>
               </section>
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="dataSource">
@@ -66,20 +67,27 @@
               
                   <!-- Name Column -->
                   <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <th mat-header-cell *matHeaderCellDef> Назва процедури </th>
                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                   </ng-container>
               
                   <!-- Weight Column -->
-                  <ng-container matColumnDef="weight">
-                    <th mat-header-cell *matHeaderCellDef> Weight </th>
-                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                  <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef> Дата запису </th>
+                    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
                   </ng-container>
               
                   <!-- Symbol Column -->
-                  <ng-container matColumnDef="symbol">
-                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                  <ng-container matColumnDef="time">
+                    <th mat-header-cell *matHeaderCellDef> Час запису </th>
+                    <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="actions">
+                    <th mat-header-cell  *matHeaderCellDef >  <th>
+                    <td mat-cell *matCellDef="let row; let i = index" >
+                         <button mat-button [disabled]="disabledCheck(i)" (click)="openAcceptDialog()">Скасувати запис</button>
+                    </td>
                   </ng-container>
               
                   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
