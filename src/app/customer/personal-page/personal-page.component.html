@@ -1,10 +1,16 @@
+<button class="return-button" mat-button (click)="onReturnClick()">
+  <mat-icon>exit_to_app</mat-icon>
+  Вийти
+</button>
 <mat-grid-list cols="10" rowHeight="50px">
-    <mat-grid-tile class="title" colspan="10" rowspan="2">Персональний кабінет</mat-grid-tile>
+    <mat-grid-tile class="title" colspan="10" rowspan="2">
+      Персональний кабінет
+    </mat-grid-tile>
     <form class="personal-form" #personalForm="ngForm">
         <mat-grid-tile colspan="5" rowspan="2"> 
             <mat-form-field  class="name-form-field">
                 <mat-label>Ім'я</mat-label>
-                <input matInput name="fullName" #fullName="ngModel" [(ngModel)]="formData.fullName" required>
+                <input matInput name="fullName" #fullName="ngModel" [(ngModel)]="formData.fullName" (change)="saverange()" required>
                 <mat-icon matSuffix>account_box</mat-icon>
             </mat-form-field>
         </mat-grid-tile>
@@ -12,7 +18,7 @@
             <mat-form-field class="instagram-form-field">
                 <mat-label>Інстаграм</mat-label>
                 <span matPrefix>@&nbsp;</span>
-                <input matInput name="instagramName" #instagramName="ngModel" [(ngModel)]="formData.instagramName" required>
+                <input matInput name="instagramName" #instagramName="ngModel" [(ngModel)]="formData.instagramName" (change)="saverange()">
                 <mat-icon matSuffix>photo_camera</mat-icon>
             </mat-form-field>
         </mat-grid-tile>
@@ -21,7 +27,7 @@
                 <mat-label>Ваш мобільний телефон</mat-label>
                 <span matPrefix>+38&nbsp;</span>
                 <input type="tel" matInput placeholder="0(99)-999-99-99" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="formData.phoneNumber" 
-                maxlength="10" required>
+                maxlength="10" (change)="saverange()" required>
                 <mat-icon matSuffix>phone</mat-icon>
             </mat-form-field>
         </mat-grid-tile>
@@ -29,13 +35,13 @@
             <mat-form-field class="telegram-form-field">
                 <mat-label>Ваш Telegram</mat-label>
                 <input type="tel" matInput placeholder="Ідентифікатор чату Telegram" name="telegramChatId" #telegramChatId="ngModel" [(ngModel)]="formData.telegramChatId"
-                maxlength="15" required>
+                maxlength="15" (change)="saverange()" required>
                 <mat-icon matSuffix>send</mat-icon>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile class="buttons" colspan="10" rowspan="1">
-                <button class="sub" mat-raised-button type="submit">Зберегти</button>
-                <button class="sub" mat-raised-button type="submit">Скасувати</button>
+                <button class="sub" mat-raised-button type="submit" (click)="onSaveClick(personalForm)">Зберегти</button>
+                <button class="sub" mat-raised-button type="submit" (click)="onCancelClick(personalForm)">Скасувати</button>
         </mat-grid-tile> 
     </form>
     <mat-grid-tile class="regist-grid-tile" colspan="10" rowspan="1">
@@ -58,26 +64,22 @@
               </section>
             <div class="example-container mat-elevation-z8">
                 <table mat-table [dataSource]="dataSource">
-              
-                  <!-- Position Column -->
+
                   <ng-container matColumnDef="position">
                     <th mat-header-cell *matHeaderCellDef> No. </th>
                     <td mat-cell *matCellDef="let element"> {{element.position}} </td>
                   </ng-container>
-              
-                  <!-- Name Column -->
+
                   <ng-container matColumnDef="name">
                     <th mat-header-cell *matHeaderCellDef> Назва процедури </th>
                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                   </ng-container>
-              
-                  <!-- Weight Column -->
+
                   <ng-container matColumnDef="date">
                     <th mat-header-cell *matHeaderCellDef> Дата запису </th>
                     <td mat-cell *matCellDef="let element"> {{element.date}} </td>
                   </ng-container>
-              
-                  <!-- Symbol Column -->
+
                   <ng-container matColumnDef="time">
                     <th mat-header-cell *matHeaderCellDef> Час запису </th>
                     <td mat-cell *matCellDef="let element"> {{element.time}} </td>
@@ -86,7 +88,7 @@
                   <ng-container matColumnDef="actions">
                     <th mat-header-cell  *matHeaderCellDef >  <th>
                     <td mat-cell *matCellDef="let row; let i = index" >
-                         <button mat-button [disabled]="disabledCheck(i)" (click)="openAcceptDialog()">Скасувати запис</button>
+                         <button mat-button [disabled]="disabledCheck(i)" (click)="openAcceptDialog(i)">Скасувати запис</button>
                     </td>
                   </ng-container>
               

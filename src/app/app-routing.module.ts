@@ -5,6 +5,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { ServicesComponent } from './customer/services/services.component';
 import { PromotionsComponent } from './customer/promotions/promotions.component';
 import { SignUpComponent } from './customer/sign-up/sign-up.component';
+import { AdminPageComponent } from './customer/admin-page/admin-page.component';
 
 const routes: Routes = [
   { path: '', component: CustomerComponent,
@@ -24,6 +25,7 @@ const routes: Routes = [
   ]
   },
   { path: 'personal-page', component: PersonalPageComponent},
+  { path: 'admin-page', component: AdminPageComponent}
 ];
 
 @NgModule({

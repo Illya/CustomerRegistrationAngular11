@@ -23,6 +23,7 @@ import { LoginDialogComponent } from './customer/login-dialog/login-dialog.compo
 import { SignUpComponent } from './customer/sign-up/sign-up.component';
 import { PersonalPageComponent } from './customer/personal-page/personal-page.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AdminPageComponent } from './customer/admin-page/admin-page.component';
 
 
 
@@ -35,7 +36,8 @@ import { AppRoutingModule } from './app-routing.module';
     PromotionsComponent,
     LoginDialogComponent,
     SignUpComponent,
-    PersonalPageComponent
+    PersonalPageComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,

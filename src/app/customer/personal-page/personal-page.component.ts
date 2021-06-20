@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 
 class Client{
   fullName:string
@@ -35,12 +38,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class PersonalPageComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private _snackBar: MatSnackBar,
+    private router: Router) { }
 
   formData:Client = new Client();
+  changedFormData = new Client();
+  ifSaved:boolean = false;
 
   displayedColumns = ['position', 'name', 'date', 'time', 'actions'];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   checked = false;
   isDisabled = true;
 
@@ -49,30 +56,59 @@ export class PersonalPageComponent implements OnInit {
     this.formData.instagramName = 'mariya_inst';
     this.formData.phoneNumber = '0978467373';
     this.formData.telegramChatId = 2664346812123;
+
+    this.changedFormData.fullName = 'Марія';
+    this.changedFormData.instagramName = 'mariya_inst';
+    this.changedFormData.phoneNumber = '0978467373';
+    this.changedFormData.telegramChatId = 2664346812123;
   }
 
   changed(){
     if(this.checked)
     {
-      this.dataSource = [
+      this.dataSource.data = [
         {position: 1, name: 'Перманент міжвійка', date: "27/6/2021", time: '16:30'},
         {position: 2, name: 'Перманент стрілка', date: "30/6/2021", time: '10:30'},
         {position: 3, name: 'Ламінування вій', date:"8/7/2021", time: '19:00'}
       ]
     }
     else{
-      this.dataSource = ELEMENT_DATA;
+      this.dataSource.data = ELEMENT_DATA;
     }
   }
 
   disabledCheck(index:number): boolean {
-    return (this.dataSource[index].date == "27/6/2021" ||
-           this.dataSource[index].date == "30/6/2021" ||
-           this.dataSource[index].date == "8/7/2021")
+    return (this.dataSource.data[index].date == "27/6/2021" ||
+           this.dataSource.data[index].date == "30/6/2021" ||
+           this.dataSource.data[index].date == "8/7/2021")
      ? false : true;
   }
 
-  openAcceptDialog() {
-    
+  openAcceptDialog(index:number) {
+    this.dataSource.data.splice(index,1);
+    this.dataSource = new MatTableDataSource<PeriodicElement>(this.dataSource.data);
+    this._snackBar.open('Запис скасовано успішно!', '', {duration: 3000});
+  }
+
+  onCancelClick(form:NgForm) {
+    if(!this.ifSaved)
+    {
+      this.formData = this.changedFormData;
+    }
+  }
+
+  onSaveClick(form:NgForm){
+    this.changedFormData = form.form.value;
+    this.ifSaved = true;
+    this._snackBar.open('Зміни успішно збережені!', '', {duration: 3000});
+  }
+
+  saverange(){
+    this.ifSaved = false;
+  }
+
+  onReturnClick()
+  {
+    this.router.navigateByUrl('');
   }
 }

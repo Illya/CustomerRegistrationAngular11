@@ -15,10 +15,16 @@ export class CustomerComponent implements OnInit {
   title = 'my-app';
   companyName = 'IVCHUK BROWBAR';
   isShowHideFlag = '';
+  login: string;
+  password: string;
 
   signIn:string;
 
-  constructor(public dialog: MatDialog, public customer: CustomerService, private router: Router) { }
+  constructor(
+    public dialog: MatDialog, 
+    public customer: CustomerService, 
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.signIn ="Увійти"
@@ -26,18 +32,26 @@ export class CustomerComponent implements OnInit {
 
   openDialog() {
     if(this.signIn != "Увійти"){
-      this.signIn = "Увійти"
+      if(this.login == 'mariya')
+      {
+        this.router.navigateByUrl('/personal-page');
+      }
     }
     else {
       const dialog = this.dialog.open(LoginDialogComponent, {
-      width: '400px',
-      height: '350px',});
-    
-      dialog.afterClosed().subscribe(() => {
-        this.signIn = 'Марія | Вийти';
+        disableClose: true,
+        width: '400px',
+        height: '350px',
+        data: {login: this.login, password: this.password}
+      });
+
+      dialog.afterClosed().subscribe(result => { 
+        this.login = result.login;
+        this.password = result.password;
+        this.signIn = 'Марія';
         this.customer.formData.fullName = "Марія";
         this.customer.formData.phoneNumber = "0978467373";
-        this.customer.formData.instagramName = "mari_inst";
+        this.customer.formData.instagramName = "mariya_inst";
       });  
     }
     
@@ -47,4 +61,11 @@ export class CustomerComponent implements OnInit {
     el.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
   }
 
+  logOutVisible():boolean {
+    return this.signIn == 'Марія' ? false : true;
+  }
+
+  logout() {
+    this.signIn = 'Увійти';
+  }
 }

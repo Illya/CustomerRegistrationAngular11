@@ -12,6 +12,7 @@
           </mat-select>
           </mat-list-item>
           <mat-list-item role="listitem"><a mat-button routerLink="/login" (click)="openDialog()">{{signIn}}</a></mat-list-item>
+          <mat-list-item role="listitem"><a mat-button [hidden]="logOutVisible()" (click)="logout()">Вийти</a></mat-list-item>
         </mat-list>
       </mat-toolbar>
       <div class="silder">

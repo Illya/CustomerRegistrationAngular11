@@ -66,7 +66,7 @@ export class CustomerFormComponent implements OnInit {
     console.log(this.customerService.formData)
     this.customerService.postRegisterInfo().subscribe(
       res => {
-          alert("Запис пройшов успішно!")
+          this._snackBar.open('Запис пройшов успішно!', '', {duration: 3000});
           console.log(res);
           this.resetForm(form);
       },
