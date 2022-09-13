@@ -6,7 +6,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BeautiProcedure } from 'src/app/shared/beauti-procedure';
 import { BeautiProcedureService } from 'src/app/shared/beauti-procedure.service';
 import { Customer } from 'src/app/shared/customer';
-import { CustomerService } from 'src/app/shared/customer.service';
+import { Registration } from 'src/app/shared/registration';
+import { RegistrationService } from 'src/app/shared/registration.service';
 
 @Component({
   selector: 'app-customer-form',
@@ -16,7 +17,7 @@ import { CustomerService } from 'src/app/shared/customer.service';
 export class CustomerFormComponent implements OnInit {
 
   constructor(
-    public customerService:CustomerService, 
+    public registrationService:RegistrationService, 
     public procedureService:BeautiProcedureService,
     private _snackBar: MatSnackBar
     ) { }
@@ -28,23 +29,23 @@ export class CustomerFormComponent implements OnInit {
   events: string[] = [];
 
   addDateEvent(event: MatDatepickerInputEvent<Date>) {
-    if(this.customerService.formData.procedure.duration)
+    if(this.registrationService.formData.procedure.duration)
     {
-        this.customerService.getFreeHours(event.value?.toDateString()!, this.customerService.formData.procedure.duration);
+        this.registrationService.getFreeHours(event.value?.toDateString()!, this.registrationService.formData.procedure.duration);
     } 
   }
 
   addProcedureEvent(procedure: BeautiProcedure){
-    if(this.customerService.formData.registrationDate) {
-      this.customerService.getFreeHours(new Date(this.customerService.formData.registrationDate).toDateString(), procedure.duration);
+    if(this.registrationService.formData.registrationDate) {
+      this.registrationService.getFreeHours(new Date(this.registrationService.formData.registrationDate).toDateString(), procedure.duration);
     } 
   }
 
   addTimeEvent(time:Time) {
-    const dateTime = new Date(this.customerService.formData.registrationDate);
+    const dateTime = new Date(this.registrationService.formData.registrationDate);
     dateTime.setHours(time.hours, time.minutes);
     const timeDifference = new DatePipe('en-US');
-    this.customerService.formData.registrationDate = timeDifference.transform(dateTime, 'yyyy-MM-ddTHH:mm:ss.sss');
+    this.registrationService.formData.registrationDate = timeDifference.transform(dateTime, 'yyyy-MM-ddTHH:mm:ss.sss');
     
   }
 
@@ -63,8 +64,8 @@ export class CustomerFormComponent implements OnInit {
   }
 
   onSubmit(form:NgForm){
-    console.log(this.customerService.formData)
-    this.customerService.postRegisterInfo().subscribe(
+    console.log(this.registrationService.formData)
+    this.registrationService.postRegisterInfo().subscribe(
       res => {
           this._snackBar.open('Запис пройшов успішно!', '', {duration: 3000});
           console.log(res);
@@ -79,6 +80,6 @@ export class CustomerFormComponent implements OnInit {
 
   resetForm(form:NgForm){
     form.form.reset();
-    this.customerService.formData = new Customer();
+    this.registrationService.formData = new Registration();
   }
 }

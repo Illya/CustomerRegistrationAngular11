@@ -3,7 +3,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import {LoginDialogComponent} from 'src/app/customer/login-dialog/login-dialog.component'
 import { Customer } from '../shared/customer';
-import { CustomerService } from '../shared/customer.service';
+import { RegistrationService } from '../shared/registration.service';
 
 @Component({
   selector: 'app-customer',
@@ -22,7 +22,7 @@ export class CustomerComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog, 
-    public customer: CustomerService, 
+    public registration: RegistrationService, 
     private router: Router
     ) { }
 
@@ -49,9 +49,9 @@ export class CustomerComponent implements OnInit {
         this.login = result.login;
         this.password = result.password;
         this.signIn = 'Марія';
-        this.customer.formData.fullName = "Марія";
-        this.customer.formData.phoneNumber = "0978467373";
-        this.customer.formData.instagramName = "mariya_inst";
+        this.registration.formData.fullName = "Марія";
+        this.registration.formData.phoneNumber = "0978467373";
+        this.registration.formData.instagramName = "mariya_inst";
       });  
     }
     

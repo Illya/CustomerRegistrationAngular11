@@ -2,7 +2,7 @@
     <div>
         <mat-form-field  class="name-form-field">
             <mat-label>Як до Вас звертатися?</mat-label>
-            <input matInput name="fullName" #fullName="ngModel" [(ngModel)]="customerService.formData.fullName" required>
+            <input matInput name="fullName" #fullName="ngModel" [(ngModel)]="registrationService.formData.fullName" required>
             <mat-icon matSuffix>account_box</mat-icon>
         </mat-form-field>
     </div>
@@ -10,7 +10,7 @@
         <mat-form-field class="instagram-form-field">
             <mat-label>Інстаграм</mat-label>
             <span matPrefix>@&nbsp;</span>
-            <input matInput name="instagramName" #instagramName="ngModel" [(ngModel)]="customerService.formData.instagramName">
+            <input matInput name="instagramName" #instagramName="ngModel" [(ngModel)]="registrationService.formData.instagramName">
             <mat-icon matSuffix>photo_camera</mat-icon>
         </mat-form-field>
     </div>
@@ -18,7 +18,7 @@
         <mat-form-field class="mobile-form-field">
             <mat-label>Ваш мобільний телефон</mat-label>
             <span matPrefix>+38&nbsp;</span>
-            <input type="tel" matInput placeholder="0(99)-999-99-99" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="customerService.formData.phoneNumber" 
+            <input type="tel" matInput placeholder="0(99)-999-99-99" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="registrationService.formData.phoneNumber" 
             maxlength="10" required>
             <mat-icon matSuffix>phone</mat-icon>
         </mat-form-field>
@@ -26,7 +26,7 @@
     <div>
         <mat-form-field class="procedure-form-field">
             <mat-label>Яка послуга вас цікавить?</mat-label>
-            <mat-select name="proc"  [(ngModel)]="customerService.formData.procedure" (selectionChange)="addProcedureEvent($event.value)" required> 
+            <mat-select name="proc"  [(ngModel)]="registrationService.formData.procedure" (selectionChange)="addProcedureEvent($event.value)" required> 
                 <mat-option *ngFor="let proc of procedureService.procedures" [value]="proc">{{proc.name}}</mat-option>
             </mat-select>
         </mat-form-field>
@@ -35,14 +35,14 @@
         <mat-form-field class="date-form-field">
             <mat-label>Оберіть дату</mat-label>
             <input matInput [matDatepicker]="myDatePicker" [min]="minDate" [max]="maxDate" [matDatepickerFilter]="dateFilter" name="date"
-            (dateInput)="addDateEvent($event)" [(ngModel)]="customerService.formData.registrationDate" required>
+            (dateInput)="addDateEvent($event)" [(ngModel)]="registrationService.formData.registrationDate" required>
             <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #myDatePicker></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="time-form-field" >
             <mat-label>Оберіть час</mat-label>
-            <mat-select name="hour" (selectionChange)="addTimeEvent($event.value)" required> 
-                <mat-option *ngFor="let hour of customerService.freeHours" [value]="hour">{{hour.hours}}:{{hour.minutes}}</mat-option>
+            <mat-select name="hour" ngModel (selectionChange)="addTimeEvent($event.value)" required> 
+                <mat-option *ngFor="let hour of registrationService.freeHours" [value]="hour">{{hour.hours}}:{{hour.minutes}}</mat-option>
             </mat-select>
         </mat-form-field>
     </div>

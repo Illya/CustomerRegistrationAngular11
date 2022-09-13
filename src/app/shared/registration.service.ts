@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Customer } from './customer';
+import { Registration } from './registration';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { DatePipe, Time } from '@angular/common';
 
@@ -12,13 +12,13 @@ interface MyTime {
   providedIn: 'root'
 })
 
-export class CustomerService {
+export class RegistrationService {
 
   constructor(private http: HttpClient ) {}
 
-  readonly baseURL = 'http://localhost:61351/api/customer'
+  readonly baseURL = 'http://localhost:61351/api/registrations'
 
-  formData:Customer = new Customer();
+  formData: Registration = new Registration();
 
   freeHours: MyTime[];
 
